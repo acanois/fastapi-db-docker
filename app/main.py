@@ -11,8 +11,6 @@ from sqlmodel import Session
 from .routers import user
 
 from .database import get_session
-
-
 SessionDep = Annotated[Session, Depends(get_session)]
 
 

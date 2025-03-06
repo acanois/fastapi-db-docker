@@ -4,13 +4,12 @@ import os
 
 from sqlmodel import SQLModel, Session, create_engine
 
-DB_USER = os.environ["DB_USER"]
-DB_NAME = os.environ["DB_NAME"]
-DB_PASSWORD = os.environ["DB_PASSWORD"]
-DB_HOST = os.environ["DB_HOST"]
-DB_PORT = os.environ["DB_PORT"]
+POSTGRES_USER = os.environ["POSTGRES_USER"]
+POSTGRES_NAME = os.environ["POSTGRES_NAME"]
+POSTGRES_PASSWORD = os.environ["POSTGRES_PASSWORD"]
+POSTGRES_HOST = os.environ["POSTGRES_HOST"]
 
-CONNECTION_STRING = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?sslmode=disable"
+CONNECTION_STRING = f"postgresql://{POSTGRES_USER}:{POSTGRES_NAME}@{POSTGRES_HOST}:5432/{POSTGRES_NAME}?sslmode=disable"
 
 engine = create_engine(CONNECTION_STRING)
 
