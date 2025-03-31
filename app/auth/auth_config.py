@@ -1,0 +1,7 @@
+"""Auth Config"""
+
+import os
+
+FAKE_SECRET_KEY = os.environ["FAKE_SECRET_KEY"]
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 30

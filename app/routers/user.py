@@ -6,10 +6,25 @@ from sqlmodel import Session
 
 from ..database import get_session
 from ..models.user import User
+from ..auth.auth_methods import get_current_active_user
 
 session = Annotated[Session, Depends(get_session)]
 
 router = APIRouter(prefix="/user", tags=["user"])
+
+
+@router.get("/me/", response_model=User)
+async def read_users_me(
+    current_user: Annotated[User, Depends(get_current_active_user)],
+):
+    return current_user
+
+
+@router.get("/me/items")
+async def read_own_items(
+    current_user: Annotated[User, Depends(get_current_active_user)],
+):
+    return [{"item_id": "Foo", "owner": current_user.username}]
 
 
 @router.get("/{user_id}", response_model=User)

@@ -8,9 +8,10 @@ from fastapi.responses import RedirectResponse
 
 from sqlmodel import Session
 
-from .routers import user
+from .routers import user, auth
 
 from .database import get_session
+
 SessionDep = Annotated[Session, Depends(get_session)]
 
 
@@ -22,6 +23,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 
 app.include_router(user.router)
+app.include_router(auth.router)
 
 
 @app.get("/")
